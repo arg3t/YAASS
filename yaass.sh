@@ -57,9 +57,10 @@ Y8.  .8P d8'    88  d8'    88  88.    \"' 88.    \"'
 }
 
 help(){
-		echo "
+		printf"
 ${GREEN} Usage:${NC}\n
 	-o Select the OS you are installing this on
+	-v Run in verbose mode
 ${ORANGE}Author:${NC} Yigit Colakoglu aka. ${BLUE}<===8 Fr1nge 8===>${NC}\n"
 		exit 0
 }
@@ -263,20 +264,16 @@ fi
 clear
 
 
+encryption_param="1"
 if [ ! "$encryption" = "n" ]; then
-    cp -r /root/.keys /mnt/sys/root
+  cp -r /root/.keys /mnt/sys/root
+	encryption_param="0"
 fi
 
+
+
 if [ "$os" = "arch" ];then
-	if [ "$home_s" = "y" ]; then
-    tmux new-session -s "arch-setup" "arch-chroot /mnt/sys /install/stage2.sh \"$boot\" \"$root\" \"$swap\" \"$home\"" || arch-chroot /mnt/sys /install/stage2.sh "$boot" "$root" "$swap" "$home"
-	else
-    tmux new-session -s "arch-setup" "arch-chroot /mnt/sys /install/stage2.sh  \"$boot\" \"$root\" \"$swap\"" || arch-chroot /mnt/sys /install/stage2.sh "$boot" "$root" "$swap"
-	fi
+    tmux new-session -s "arch-setup" "arch-chroot /mnt/sys /install/stage2.sh \"$encryption_param\" \"$boot\" \"$root\" \"$swap\" \"$home\"" || arch-chroot /mnt/sys /install/stage2.sh "$encryption_param" "$boot" "$root" "$swap" "$home"
 else
-	if [ "$home_s" = "y" ]; then
-    tmux new-session -s "artix-setup" "artix-chroot /mnt/sys /install/stage2.sh \"$boot\" \"$root\" \"$swap\" \"$home\"" || artix-chroot /mnt/sys /install/stage2.sh "$boot" "$root" "$swap" "$home"
-	else
-    tmux new-session -s "artix-setup" "artix-chroot /mnt/sys /install/stage2.sh \"$boot\" \"$root\" \"$swap\"" || artix-chroot /mnt/sys /install/stage2.sh "$boot" "$root" "$swap"
-	fi
+    tmux new-session -s "artix-setup" "artix-chroot /mnt/sys /install/stage2.sh \"$encryption_param\" \"$boot\" \"$root\" \"$swap\" \"$home\"" || artix-chroot /mnt/sys /install/stage2.sh "$encryption_param" "$boot" "$root" "$swap" "$home"
 fi

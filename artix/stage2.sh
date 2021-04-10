@@ -76,7 +76,9 @@ if [ ! -f "/tmp/.blackarch" ]; then
     chmod +x /tmp/strap.sh
     /tmp/strap.sh
 
-    printf "\n[multilib]\nInclude = /etc/pacman.d/mirrorlist\n\n[options]\nILoveCandy\nTotalDownload\nColor" >> /etc/pacman.conf
+    printf "\n[multilib]\nInclude = /etc/pacman.d/mirrorlist-arch" >> /etc/pacman.conf
+    printf "\n[lib32]\nInclude = /etc/pacman.d/mirrorlist\n\n[options]\nILoveCandy\nTotalDownload\nColor" >> /etc/pacman.conf
+
     flexo=$(prompt "Are you going to use a flexo server?(y/N): ")
 
     if [ "$flexo" = "y" ]; then
@@ -230,6 +232,7 @@ sudo -u "$username" bash -c "git clone https://aur.archlinux.org/yay.git /tmp/ya
 sudo -u "$username" bash -c "(cd /tmp/yay; makepkg --noconfirm -si)"
 sudo -u "$username" bash -c "yay --noconfirm -S plymouth"
 
+sudo -u "$username" bash -c "yay --noconfirm -S plymouth-openrc-plugin"
 clear
 
 dotfiles=$(prompt "Would you like to automatically install my dotfiles?(y/N): ")
@@ -254,8 +257,11 @@ clear
 
 echo -e "/boot/EFI/refind\n2\n2" | sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/bobafetthotmail/refind-theme-regular/master/install.sh)"
 
-systemctl enable connman
-systemctl enable cronie
+sudo rc-update add cronie
+sudo rc-update add acpi
+sudo rc-update add dbus
+sudo rc-update add connmand
+sudo rc-update add syslog-ng
 
 clear
 
