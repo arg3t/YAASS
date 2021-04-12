@@ -54,7 +54,7 @@ banner(){
 	printf "   88    88     88  88     88  d8'   .8P d8'   .8P\n"
 	printf "   dP    88     88  88     88   Y88888P   Y88888P\n"
 	printf "${NC}"
-	printf "      ${PURPLE}Yeet's Automated Arch Setup Script${NC}"
+	printf "       ${PURPLE}Yeet's Automated Arch Setup Script${NC}"
 	printf "\n\n"
 }
 
@@ -170,7 +170,7 @@ clear
 info "Formatting boot partition"
 mkfs.fat -F32 "$boot"
 
-encryption=$(prompt "Would you like to enrypt your disks?(y/N): ")
+encryption=$(prompt "Would you like to encrypt your disks?(y/N): ")
 
 if [ "$encryption" = "y" ]; then
     clear
