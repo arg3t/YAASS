@@ -245,13 +245,13 @@ case $os in
 	arch)
     pacstrap /mnt/sys base linux linux-firmware base-devel vi nano
     genfstab -U /mnt/sys >> /mnt/sys/etc/fstab
-    curl https://raw.githubusercontent.com/theFr1nge/YAASS/main/arch/pkg.list > /mnt/sys/install/packages.base
+    curl https://raw.githubusercontent.com/theFr1nge/YAASS/main/arch/pkg.list > /mnt/sys/install/pkg.list
 		curl https://raw.githubusercontent.com/theFr1nge/YAASS/main/arch/stage2.sh > /mnt/sys/install/stage2.sh
 		;;
 	artix)
     basestrap /mnt/sys base linux linux-firmware base-devel vi nano openrc
     fstabgen -U /mnt/sys >> /mnt/sys/etc/fstab
-    curl https://raw.githubusercontent.com/theFr1nge/YAASS/main/artix/pkg.list > /mnt/sys/install/packages.base
+    curl https://raw.githubusercontent.com/theFr1nge/YAASS/main/artix/pkg.list > /mnt/sys/install/pkg.list
 		curl https://raw.githubusercontent.com/theFr1nge/YAASS/main/artix/stage2.sh > /mnt/sys/install/stage2.sh
 		;;
 esac
