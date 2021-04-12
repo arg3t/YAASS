@@ -40,19 +40,6 @@ prompt(){
   printf "\n"
 }
 
-banner(){
-		echo "${CYAN}
-dP    dP  .d888888   .d888888  .d88888b  .d88888b
-Y8.  .8P d8'    88  d8'    88  88.    \"' 88.    \"'
- Y8aa8P  88aaaaa88a 88aaaaa88a \`Y88888b. \`Y88888b.
-	 88    88     88  88     88        \`8b       \`8b
-	 88    88     88  88     88  d8'   .8P d8'   .8P
-	 dP    88     88  88     88   Y88888P   Y88888P
-		${NC}"
-		echo "      ${PURPLE}Yeet's Automated Arch Setup Script${NC}"
-}
-
-
 clear
 
 encryption=$1
@@ -60,8 +47,11 @@ root=$3
 swap=$4
 home=$5
 
+ln -sf /bin/bash /bin/sh
+
 zone=$(prompt "Please enter timezone: ")
 while [ ! -f "/usr/share/zoneinfo/$zone" ]; do
+    error "Timezone not found"
     zone=$(prompt "Please enter timezone: ")
 done
 ln -sf "/usr/share/zoneinfo/$zone" /etc/localtime
