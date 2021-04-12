@@ -14,7 +14,7 @@ installation usb and booted from it of course. If you want to save a few clicks,
 you can do:
 
 ```sh
-bash -C <(https://yigitcolakoglu.com/auto-yass.sh)
+bash -C <(curl https://yigitcolakoglu.com/auto-yaass.sh)
 ```
 
 
