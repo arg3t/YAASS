@@ -45,7 +45,7 @@ install_deps(){
 }
 
 banner(){
-		echo "${CYAN}
+		printf "${CYAN}
 dP    dP  .d888888   .d888888  .d88888b  .d88888b
 Y8.  .8P d8'    88  d8'    88  88.    \"' 88.    \"'
  Y8aa8P  88aaaaa88a 88aaaaa88a \`Y88888b. \`Y88888b.
@@ -53,7 +53,7 @@ Y8.  .8P d8'    88  d8'    88  88.    \"' 88.    \"'
 	 88    88     88  88     88  d8'   .8P d8'   .8P
 	 dP    88     88  88     88   Y88888P   Y88888P
 		${NC}"
-		echo "      ${PURPLE}Yeet's Automated Arch Setup Script${NC}"
+		printf "      ${PURPLE}Yeet's Automated Arch Setup Script${NC}"
 }
 
 help(){
