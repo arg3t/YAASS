@@ -34,7 +34,7 @@ error(){
 }
 
 prompt(){
-  printf "[\e[35mPROMPT\e[0m]: %s" "$1"
+  1>&2 printf "[\e[35mPROMPT\e[0m]: %s" "$1"
   read -r ans
   printf "%s" "$ans"
 }
@@ -64,6 +64,8 @@ ${GREEN} Usage:${NC}\n
 ${ORANGE}Author:${NC} Yigit Colakoglu aka. ${BLUE}<===8 Fr1nge 8===>${NC}\n"
 		exit 0
 }
+
+banner
 
 os=""
 
