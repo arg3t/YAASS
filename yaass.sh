@@ -70,6 +70,8 @@ ${ORANGE}Author:${NC} Yigit Colakoglu aka. ${BLUE}<===8 Fr1nge 8===>${NC}\n"
 
 os=""
 
+clear
+
 banner
 
 while [[ $# -gt 0 ]]
