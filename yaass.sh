@@ -37,6 +37,7 @@ prompt(){
   1>&2 printf "[\e[35mPROMPT\e[0m]: %s" "$1"
   read -r ans
   printf "%s" "$ans"
+	printf "\n"
 }
 
 install_deps(){
@@ -45,16 +46,17 @@ install_deps(){
 }
 
 banner(){
-		1>&2 printf "${CYAN}
-dP    dP  .d888888   .d888888  .d88888b  .d88888b
-Y8.  .8P d8'    88  d8'    88  88.    \"' 88.    \"'
- Y8aa8P  88aaaaa88a 88aaaaa88a \`Y88888b. \`Y88888b.
-	 88    88     88  88     88        \`8b       \`8b
-	 88    88     88  88     88  d8'   .8P d8'   .8P
-	 dP    88     88  88     88   Y88888P   Y88888P
-		${NC}"
-		1>&2 printf "      ${PURPLE}Yeet's Automated Arch Setup Script${NC}"
+	printf "${CYAN}"
+	printf "dP    dP  .d888888   .d888888  .d88888b  .d88888b\n"
+	printf "Y8.  .8P d8'    88  d8'    88  88.       88.    \n"
+	printf " Y8aa8P  88aaaaa88 88aaaaa88a \`Y88888b. \`Y88888b.\n"
+	printf "   88    88     88  88     88        \`8b       \`8b\n"
+	printf "   88    88     88  88     88  d8'   .8P d8'   .8P\n"
+	printf "   dP    88     88  88     88   Y88888P   Y88888P\n"
+	printf "${NC}"
+	printf "      ${PURPLE}Yeet's Automated Arch Setup Script${NC}"
 }
+
 
 help(){
 		1>&2 printf"
@@ -66,6 +68,8 @@ ${ORANGE}Author:${NC} Yigit Colakoglu aka. ${BLUE}<===8 Fr1nge 8===>${NC}\n"
 }
 
 os=""
+
+banner
 
 while [[ $# -gt 0 ]]
 do
@@ -277,3 +281,4 @@ if [ "$os" = "arch" ];then
 else
     tmux new-session -s "artix-setup" "artix-chroot /mnt/sys /install/stage2.sh \"$encryption_param\" \"$boot\" \"$root\" \"$swap\" \"$home\"" || artix-chroot /mnt/sys /install/stage2.sh "$encryption_param" "$boot" "$root" "$swap" "$home"
 fi
+
