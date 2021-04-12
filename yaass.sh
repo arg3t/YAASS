@@ -55,6 +55,7 @@ banner(){
 	printf "   dP    88     88  88     88   Y88888P   Y88888P\n"
 	printf "${NC}"
 	printf "      ${PURPLE}Yeet's Automated Arch Setup Script${NC}"
+	printf "\n"
 }
 
 
