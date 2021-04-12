@@ -55,7 +55,7 @@ banner(){
 	printf "   dP    88     88  88     88   Y88888P   Y88888P\n"
 	printf "${NC}"
 	printf "      ${PURPLE}Yeet's Automated Arch Setup Script${NC}"
-	printf "\n"
+	printf "\n\n"
 }
 
 
@@ -104,7 +104,7 @@ fi
 # Disk setup
 lsblk
 
-device=$(prompt "What is the install device: ")
+device="/dev/$(prompt "What is the install device (Just provide the name, do not input /dev/sda etc.): ")"
 info "Installing to $device... (Enter to continue)"
 read -r _
 
