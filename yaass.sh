@@ -65,8 +65,6 @@ ${ORANGE}Author:${NC} Yigit Colakoglu aka. ${BLUE}<===8 Fr1nge 8===>${NC}\n"
 		exit 0
 }
 
-banner
-
 os=""
 
 while [[ $# -gt 0 ]]
