@@ -191,7 +191,7 @@ HOOKS=(base udev plymouth autodetect keyboard keymap consolefont modconf block p
 EOF
   fi
 
-pacman -Syu --noconfirm "$(xargs < /install/pkg.list)"
+pacman -Syu --noconfirm $(xargs < /install/pkg.list)
 refind-install
 clear
 if [ "$encryption" = "1" ]; then
