@@ -45,7 +45,7 @@ install_deps(){
 }
 
 banner(){
-		printf "${CYAN}
+		1>&2 printf "${CYAN}
 dP    dP  .d888888   .d888888  .d88888b  .d88888b
 Y8.  .8P d8'    88  d8'    88  88.    \"' 88.    \"'
  Y8aa8P  88aaaaa88a 88aaaaa88a \`Y88888b. \`Y88888b.
@@ -53,11 +53,11 @@ Y8.  .8P d8'    88  d8'    88  88.    \"' 88.    \"'
 	 88    88     88  88     88  d8'   .8P d8'   .8P
 	 dP    88     88  88     88   Y88888P   Y88888P
 		${NC}"
-		printf "      ${PURPLE}Yeet's Automated Arch Setup Script${NC}"
+		1>&2 printf "      ${PURPLE}Yeet's Automated Arch Setup Script${NC}"
 }
 
 help(){
-		printf"
+		1>&2 printf"
 ${GREEN} Usage:${NC}\n
 	-o Select the OS you are installing this on
 	-v Run in verbose mode
