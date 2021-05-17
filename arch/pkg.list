@@ -1,4 +1,7 @@
 connman
+wpa_manager
+picom
+bluez
 efibootmgr
 refind
 dhcpcd
