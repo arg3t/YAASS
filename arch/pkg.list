@@ -1,5 +1,4 @@
-connman
-wpa_manager
+wpamanager
 picom
 bluez
 efibootmgr
@@ -19,5 +18,4 @@ cronie
 wget
 curl
 dash
-mksh
 acpi

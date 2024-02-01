@@ -174,18 +174,8 @@ pacman -Syu --needed --noconfirm $(cat /install/pkg.list)
 refind-install
 #clear
 if [ "$encryption" = "1" ]; then
-  line=1
-
-  blkid | while IFS= read -r i; do
-      echo "$line: $i"
-      ((line=line+1))
-  done
-
-  keydev=$(prompt "Please select the device you will save the LUKS key to: ")
-  # TODO automatically copy key files and format device
-  uuid=$(blkid | sed -n 's/.*UUID=\"\([^\"]*\)\".*/\1/p'  | sed -n "$keydev"p)
   cat << EOF > /boot/refind_linux.conf
-"Boot with encryption"  "root=/dev/mapper/root resume=/dev/mapper/swap cryptdevice=UUID=$(blkid -s UUID -o value "$root"):root:allow-discards cryptkey=UUID=$uuid:vfat:key.yeet rw loglevel=3 quiet splash"
+"Boot with encryption"  "root=/dev/mapper/root resume=/dev/mapper/swap cryptdevice=UUID=$(blkid -s UUID -o value "$root"):root:allow-discards rw loglevel=3 quiet splash"
 EOF
   #clear
 else
