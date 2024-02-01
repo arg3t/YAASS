@@ -40,7 +40,7 @@ prompt(){
   printf "\n"
 }
 
-clear
+#clear
 
 encryption=$1
 root=$3
@@ -66,7 +66,7 @@ echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
 printf "\n[multilib]\nInclude = /etc/pacman.d/mirrorlist\n\n[options]\nILoveCandy\nTotalDownload\nColor" >> /etc/pacman.conf
 
-clear
+#clear
 
 hostname=$(prompt "Please enter hostname: ")
 echo "$hostname" > /etc/hostname
@@ -172,7 +172,7 @@ EOF
 
 pacman -Syu --noconfirm $(xargs < /install/pkg.list)
 refind-install
-clear
+#clear
 if [ "$encryption" = "1" ]; then
   line=1
 
@@ -187,7 +187,7 @@ if [ "$encryption" = "1" ]; then
   cat << EOF > /boot/refind_linux.conf
 "Boot with encryption"  "root=/dev/mapper/root resume=/dev/mapper/swap cryptdevice=UUID=$(blkid -s UUID -o value "$root"):root:allow-discards cryptkey=UUID=$uuid:vfat:key.yeet rw loglevel=3 quiet splash"
 EOF
-  clear
+  #clear
 else
   cat << EOF > /boot/refind_linux.conf
 "Boot without encryption"  "root=UUID=$(blkid -s UUID -o value "$root") resume=UUID=$(blkid -s UUID -o value "$swap") rw loglevel=3 quiet splash"
@@ -202,7 +202,7 @@ sudo -u "$username" bash -c "git clone https://aur.archlinux.org/yay.git /tmp/ya
 sudo -u "$username" bash -c "(cd /tmp/yay; makepkg --noconfirm -si)"
 sudo -u "$username" bash -c "yay --noconfirm -S plymouth"
 
-clear
+#clear
 
 dotfiles=$(prompt "Would you like to automatically install my dotfiles?(y/N): ")
 
@@ -210,7 +210,7 @@ if [ "$dotfiles" = "y" ]; then
     pacman -R --noconfirm vim
     sudo -u "$username" bash -c "git clone --recurse-submodules https://github.com/theFr1nge/dotfiles.git ~/.dotfiles"
     sudo -u "$username" bash -c "(cd ~/.dotfiles; ./install.sh)"
-    clear
+    #clear
 fi
 
 info "Installing Plymouth theme"
@@ -225,7 +225,7 @@ echo "include themes/catppuccin/mocha.conf" >> /boot/EFI/refind/refind.conf
 systemctl enable connman
 systemctl enable cronie
 
-clear
+#clear
 
 info "Running mkinitcpio"
 mkinitcpio -P
@@ -234,7 +234,7 @@ if [ "$encryption" = "$1" ]; then
     vim /etc/fstab
 fi
 
-clear
+#clear
 
 rm -rf /etc/sudoers.d/nopwd
 echo "Defaults env_reset,pwfeedback" > /etc/sudoers.d/wheel
@@ -243,7 +243,7 @@ echo "$username $hostname =NOPASSWD: /sbin/shutdown ,/sbin/halt,/sbin/reboot,/sb
 
 ln -sf /bin/dash /bin/sh
 
-clear
+#clear
 
 echo "SETUP COMPLETE"
 bash
