@@ -147,21 +147,14 @@ clear
 
 lsblk "$device"
 echo ""
-echo "Now you will specify the partitions you have created"
-echo "Please enter the suffix for each partition. For Ex:"
-echo "1 if boot partition is /dev/sda1 or p1 if boot is on /dev/nvme0n1p1 and the disk is /dev/nvme0n1"
-boot_p=$(prompt "Please enter boot partition suffix: ")
-root_p=$(prompt "Please enter root partition suffix: ")
-swap_p=$(prompt "Please enter swap partition suffix: ")
-boot=$device$boot_p
-root=$device$root_p
-swap=$device$swap_p
+boot=$(prompt "Please enter boot partition: ")
+root=$(prompt "Please enter root partition: ")
+swap=$(prompt "Please enter swap partition: ")
 if [ -z "$home_s" ]; then
 	home_s=$(prompt "Did you create a home partition as well?(y/N): ")
 fi
 if [ "$home_s" = "y" ]; then
-		home_p=$(prompt "Please enter home partition suffix: ")
-    home=$device$home_p
+		home=$(prompt "Please enter home partition: ")
 fi
 
 clear
