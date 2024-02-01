@@ -173,12 +173,12 @@ if [ "$encryption" = "y" ]; then
     if [ "$cipher" = "" ]; then
         cipher="aes-xts-plain64"
     fi
-		iter=$("Please select the iter time(750): ")
+		iter=$(prompt "Please select the iter time(750): ")
 
     if [ "$iter" = "" ]; then
         iter="750"
     fi
-		keysize=$("Please select the key size(512): ")
+		keysize=$(prompt "Please select the key size(512): ")
     if [ "$keysize" = "" ]; then
         keysize="512"
     fi
