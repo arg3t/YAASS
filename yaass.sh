@@ -188,11 +188,13 @@ if [ "$encryption" = "y" ]; then
         keysize="512"
     fi
     # Create the swap partition
-    mkdir /root/.keys
+    mkdir -p /root/.keys
     dd if=/dev/urandom of=/root/.keys/swap-keyfile bs=1024 count=4
     chmod 600 /root/.keys/swap-keyfile
-    cryptsetup --key-size "$keysize" --cipher "$cipher" --iter-time "$iter" -q luksFormat "$swap" < /root/.keys/swap-keyfile
     info "Keyfile saved to /root/.keys/swap-keyfile"
+
+    cat /root/.keys/swap-keyfile | cryptsetup --key-size "$keysize" --cipher "$cipher" --iter-time "$iter" -q luksFormat "$swap"
+
     cryptsetup open --key-file="/root/.keys/swap-keyfile" "$swap" swap
     mkswap /dev/mapper/swap
     swapon /dev/mapper/swap
