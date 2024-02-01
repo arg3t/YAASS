@@ -167,8 +167,13 @@ encryption=$(prompt "Would you like to encrypt your disks?(y/N): ")
 
 if [ "$encryption" = "y" ]; then
     clear
-    info "Running benchmark"
-    cryptsetup benchmark
+
+  benchmark=$(prompt "Would you like to run benchmark?(y/N): ")
+
+    if [ "$benchmark" = "y" ]; then
+      info "Running benchmark"
+      cryptsetup benchmark
+    fi
 		cipher=$(prompt "Please select the ciphering algorithm(aes-xts-plain64): ")
     if [ "$cipher" = "" ]; then
         cipher="aes-xts-plain64"
