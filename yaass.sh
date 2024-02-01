@@ -133,19 +133,19 @@ cfdisk "$device"
 clear
 sleep 2
 [ ! "$(command -v partprobe)" = "" ] && partprobe
-lsblk "$device"
+lsblk
 satisfied=$(prompt "Are you satisfied with your partitions?(Y/n): ")
 
 while [ "$satisfied" = "n" ]; do
     cfdisk "$device"
     clear
     [ ! "$(command -v partprobe)" = "" ] && partprobe
-    lsblk "$device"
+    lsblk
 		satisfied=$(prompt "Are you satisfied with your partitions?(Y/n): ")
 done
 clear
 
-lsblk "$device"
+lsblk
 echo ""
 boot=$(prompt "Please enter boot partition: ")
 root=$(prompt "Please enter root partition: ")
