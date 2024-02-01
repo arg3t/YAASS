@@ -171,6 +171,11 @@ EOF
   fi
 
 pacman -Syu --needed --noconfirm $(cat /install/pkg.list)
+
+if [ $? ]; then
+    echo "Dropping you into a shell so that you can fix them, once you quit the shell, the installation will continue from where you left off."
+    bash
+fi
 refind-install
 #clear
 if [ "$encryption" = "1" ]; then
