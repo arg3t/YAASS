@@ -64,28 +64,7 @@ locale-gen
 
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 
-if [ ! -f "/tmp/.blackarch" ]; then
-    curl https://blackarch.org/strap.sh > /tmp/strap.sh
-    chmod +x /tmp/strap.sh
-    /tmp/strap.sh
-
-    printf "\n[multilib]\nInclude = /etc/pacman.d/mirrorlist\n\n[options]\nILoveCandy\nTotalDownload\nColor" >> /etc/pacman.conf
-    flexo=$(prompt "Are you going to use a flexo server?(y/N): ")
-
-    if [ "$flexo" = "y" ]; then
-        flexo_ip=$(prompt "Please enter ip address of flexo server: ")
-        echo -e "\nServer = http://$flexo_ip:7878/\$repo/os/\$arch\n" >> /etc/pacman.d/mirrorlist
-    fi
-    pacman -Syy
-
-    errors=$(prompt "Did any errors occur?(y/N): ")
-
-    if [ "$errors" = "y" ]; then
-        echo "Dropping you into a shell so that you can fix them, once you quit the shell, the installation will continue from where you left off."
-        bash
-    fi
-    touch /tmp/.blackarch
-fi
+printf "\n[multilib]\nInclude = /etc/pacman.d/mirrorlist\n\n[options]\nILoveCandy\nTotalDownload\nColor" >> /etc/pacman.conf
 
 clear
 
@@ -235,17 +214,13 @@ if [ "$dotfiles" = "y" ]; then
 fi
 
 info "Installing Plymouth theme"
-git clone https://github.com/adi1090x/plymouth-themes.git /tmp/pthemes
-cat << EOF > /etc/plymouth/plymouthd.conf
-[Daemon]
-Theme=sphere
-ShowDelay=0
-DeviceTimeout=8
-EOF
-cp -r /tmp/pthemes/pack_4/sphere /usr/share/plymouth/themes
-clear
+git clone https://github.com/catppuccin/plymouth.git /tmp/plymouth
+sudo cp -r /tmp/plymouth/themes/* /usr/share/plymouth/themes/
+sudo plymouth-set-default-theme -R catppuccin-mocha
 
-echo -e "/boot/EFI/refind\n2\n2" | sudo bash -c "$(curl -fsSL https://raw.githubusercontent.com/bobafetthotmail/refind-theme-regular/master/install.sh)"
+info "Installing rEFInd theme"
+git clone https://github.com/catppuccin/refind.git /boot/EFI/refind/themes/catppuccin
+echo "include themes/catppuccin/mocha.conf" >> /boot/EFI/refind/refind.conf
 
 systemctl enable connman
 systemctl enable cronie
